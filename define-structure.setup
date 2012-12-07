@@ -1,0 +1,9 @@
+;;;  -*- Hen -*-
+
+(use setup-helper-mod)
+
+(verify-extension-name "define-structure")
+
+(setup-shared-extension-module 'define-structure (extension-version "1.0")
+  #:inline? #t #:types? #t
+  #:compile-options '(-fixnum-arithmetic -O3 -d2))

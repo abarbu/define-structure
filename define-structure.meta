@@ -1,0 +1,19 @@
+;;;  -*- Hen -*-
+
+((egg "define-structure.egg")
+ (category data)
+ (author "Andrei Barbu")
+ (maintainer "Andrei Barbu")
+ (license "BSD")
+ (doc-from-wiki)
+ (synopsis "QobiScheme-compatible define-structure")
+ (depends
+  (setup-helper "1.5.2")
+  (miscmacros "2.91")
+  (check-errors "1.12.0")
+  (condition-utils "1.0.0")
+  (nondeterminism "1.0"))
+ (files "define-structure.meta"
+        "define-structure.setup"
+        "define-structure.scm"
+        "define-structure.release-info"))
