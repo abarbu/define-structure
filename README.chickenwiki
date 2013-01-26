@@ -1,97 +1,98 @@
-[[tags: egg gui]]
+[[tags: egg lang-exts]]
 [[toc:]]
 
-Do not edit this page, it is maintained in the this package's [https://github.com/abarbu/define-structure github repository].
+This page is maintained in the package's
+[[https://github.com/abarbu/define-structure|github repository]].
 
-= define-structure =
+= define-structure
 
 This is a Chicken Scheme egg which implements a QobiScheme-compatible
 ''define-structure'' macro. The resulting object is implemented as a
 chicken record. It automatically sets up reader syntax for reading and
 writing the object. It also integrates with the nondeterminism egg,
-see ''local-set-<name>-<field>!''.
+see ''local-set-{name}-{field}!''.
 
-==== Creation ====
+==== Creation
 
 <macro>(define-structure name . fields)</macro>
 
 Creates a new structure.
 
-==== Use =====
+==== Use
 
 The following functions are generated when creating a structure. 
 
-<procedure>(make-<name> <field0-value> <field1-value> ...)</procedure>
-<procedure>(make-keywords-<name> <field-name>: <field-value> ...)</procedure>
+<procedure>(make-{name} {field0-value} {field1-value} ...)</procedure>
+<procedure>(make-keywords-{name} {field-name}: {field-value} ...)</procedure>
 
-Any fields not defined in ''make-keywords-<name>'' will be uninitialized.
+Any fields not defined in ''make-keywords-{name}'' will be uninitialized.
 
-<procedure>(<name>? obj)</procedure>
+<procedure>({name}? obj)</procedure>
 
-Tests if ''obj'' is of a ''<name>'' record.
+Tests if ''obj'' is of a ''{name}'' record.
 
-<procedure>(<name>-<field> obj)</procedure>
+<procedure>({name}-{field} obj)</procedure>
 
 Accesses the field.
 
-<procedure>(<name>-<field>-set! obj val)</procedure>
-<procedure>(set-<name>-<field>! obj val)</procedure>
+<procedure>({name}-{field}-set! obj val)</procedure>
+<procedure>(set-{name}-{field}! obj val)</procedure>
 
 The former is created by chicken's ''define-record'', the latter is
 added for compatbility with QobiScheme. 
 
-<procedure>(<name>-<field>-setp! obj proc)</procedure>
-<procedure>(setp-<name>-<field>! obj proc)</procedure>
+<procedure>({name}-{field}-setp! obj proc)</procedure>
+<procedure>(setp-{name}-{field}! obj proc)</procedure>
 
 Like ''set-'' but calls ''proc'' witht he current value and updates it
 to what ''proc'' returns.
 
-<procedure>(local-set-<name>-<field>! obj val)</procedure>
-<procedure>(local-setp-<name>-<field>! obj proc)</procedure>
+<procedure>(local-set-{name}-{field}! obj val)</procedure>
+<procedure>(local-setp-{name}-{field}! obj proc)</procedure>
 
 This set! will be undone when backtracking with the nondeterminism
 egg.
 
-<procedure>(<name>-<field>-update obj val)</procedure>
-<procedure>(update-<name>-<field> obj val)</procedure>
-<procedure>(<name>-<field>-updatep obj proc)</procedure>
-<procedure>(updatep-<name>-<field> obj proc)</procedure>
+<procedure>({name}-{field}-update obj val)</procedure>
+<procedure>(update-{name}-{field} obj val)</procedure>
+<procedure>({name}-{field}-updatep obj proc)</procedure>
+<procedure>(updatep-{name}-{field} obj proc)</procedure>
 
 like the ''set'' and ''setp'' versions but these return a new copy of
 the object.
 
-<procedure>(set-<name>! obj <field-key>: <field-value> ...)</procedure>
-<procedure>(setp-<name>! obj <field-key>: <field-value> ...)</procedure>
-<procedure>(update-<name> obj <field-key>: <field-value> ...)</procedure>
-<procedure>(updatep-<name> obj <field-key>: <field-value> ...)</procedure>
+<procedure>(set-{name}! obj {field-key}: {field-value} ...)</procedure>
+<procedure>(setp-{name}! obj {field-key}: {field-value} ...)</procedure>
+<procedure>(update-{name} obj {field-key}: {field-value} ...)</procedure>
+<procedure>(updatep-{name} obj {field-key}: {field-value} ...)</procedure>
 
 As above but with keywords.
 
-<procedure>(alist-><name> alist)</procedure>
-<procedure>(<name>->alist obj)</procedure>
+<procedure>(alist->{name} alist)</procedure>
+<procedure>({name}->alist obj)</procedure>
 
 Convert to and back from an alist.
 
-<procedure>(old-vector-><name> vector)</procedure>
+<procedure>(old-vector->{name} vector)</procedure>
 
-Reads in a vector of the form ''#(<case-insensitive-name> <field0> ...)''.
+Reads in a vector of the form ''#({case-insensitive-name} {field0} ...)''.
 This is only provided for compatibility with ''Scheme->C''.
 Not yet implemented.
 
-=== License ===
+=== License
 
-   Copyright 1993-1995 University of Toronto. All rights reserved.
-   Copyright 1996 Technion. All rights reserved.
-   Copyright 1996 and 1997 University of Vermont. All rights reserved.
-   Copyright 1997-2001 NEC Research Institute, Inc. All rights reserved.
-   Copyright 2002-2012 Purdue University. All rights reserved.
+   Copyright (c) 2013, Andrei Barbu, Purdue University
+   All rights reserved.
+
+   Contact Andrei Barbu at andrei@0xab.com.
+
    This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
+   it under the terms of the GNU Lesser General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   You should have received a copy of the GNU General Public License
+   GNU Lesser General Public License for more details.
+   You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see http://www.gnu.org/licenses.

@@ -1,10 +1,11 @@
+
 = define-structure =
 
 This is a Chicken Scheme egg which implements a QobiScheme-compatible
 ''define-structure'' macro. The resulting object is implemented as a
 chicken record. It automatically sets up reader syntax for reading and
 writing the object. It also integrates with the nondeterminism egg,
-see ''local-set-<name>-<field>!''.
+see ''local-set-{name}-{field}!''.
 
 ==== Creation ====
 
@@ -12,82 +13,82 @@ see ''local-set-<name>-<field>!''.
 
 Creates a new structure.
 
-==== Use =====
+==== Use ====
 
 The following functions are generated when creating a structure. 
 
-:(make-<name> <field0-value> <field1-value> ...)
-:(make-keywords-<name> <field-name>: <field-value> ...)
+:(make-{name} {field0-value} {field1-value} ...)
+:(make-keywords-{name} {field-name}: {field-value} ...)
 
-Any fields not defined in ''make-keywords-<name>'' will be uninitialized.
+Any fields not defined in ''make-keywords-{name}'' will be uninitialized.
 
-:(<name>? obj)
+:({name}? obj)
 
-Tests if ''obj'' is of a ''<name>'' record.
+Tests if ''obj'' is of a ''{name}'' record.
 
-:(<name>-<field> obj)
+:({name}-{field} obj)
 
 Accesses the field.
 
-:(<name>-<field>-set! obj val)
-:(set-<name>-<field>! obj val)
+:({name}-{field}-set! obj val)
+:(set-{name}-{field}! obj val)
 
 The former is created by chicken's ''define-record'', the latter is
 added for compatbility with QobiScheme. 
 
-:(<name>-<field>-setp! obj proc)
-:(setp-<name>-<field>! obj proc)
+:({name}-{field}-setp! obj proc)
+:(setp-{name}-{field}! obj proc)
 
 Like ''set-'' but calls ''proc'' witht he current value and updates it
 to what ''proc'' returns.
 
-:(local-set-<name>-<field>! obj val)
-:(local-setp-<name>-<field>! obj proc)
+:(local-set-{name}-{field}! obj val)
+:(local-setp-{name}-{field}! obj proc)
 
 This set! will be undone when backtracking with the nondeterminism
 egg.
 
-:(<name>-<field>-update obj val)
-:(update-<name>-<field> obj val)
-:(<name>-<field>-updatep obj proc)
-:(updatep-<name>-<field> obj proc)
+:({name}-{field}-update obj val)
+:(update-{name}-{field} obj val)
+:({name}-{field}-updatep obj proc)
+:(updatep-{name}-{field} obj proc)
 
 like the ''set'' and ''setp'' versions but these return a new copy of
 the object.
 
-:(set-<name>! obj <field-key>: <field-value> ...)
-:(setp-<name>! obj <field-key>: <field-value> ...)
-:(update-<name> obj <field-key>: <field-value> ...)
-:(updatep-<name> obj <field-key>: <field-value> ...)
+:(set-{name}! obj {field-key}: {field-value} ...)
+:(setp-{name}! obj {field-key}: {field-value} ...)
+:(update-{name} obj {field-key}: {field-value} ...)
+:(updatep-{name} obj {field-key}: {field-value} ...)
 
 As above but with keywords.
 
-:(alist-><name> alist)
-:(<name>->alist obj)
+:(alist->{name} alist)
+:({name}->alist obj)
 
 Convert to and back from an alist.
 
-:(old-vector-><name> vector)
+:(old-vector->{name} vector)
 
-Reads in a vector of the form ''#(<case-insensitive-name> <field0> ...)''.
+Reads in a vector of the form ''#({case-insensitive-name} {field0} ...)''.
 This is only provided for compatibility with ''Scheme->C''.
 Not yet implemented.
 
 === License ===
 
-   Copyright 1993-1995 University of Toronto. All rights reserved.
-   Copyright 1996 Technion. All rights reserved.
-   Copyright 1996 and 1997 University of Vermont. All rights reserved.
-   Copyright 1997-2001 NEC Research Institute, Inc. All rights reserved.
-   Copyright 2002-2012 Purdue University. All rights reserved.
+   Copyright (c) 2013, Andrei Barbu, Purdue University
+   All rights reserved.
+
+   Contact Andrei Barbu at andrei@0xab.com.
+
    This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
+   it under the terms of the GNU Lesser General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   You should have received a copy of the GNU General Public License
+   GNU Lesser General Public License for more details.
+   You should have received a copy of the GNU Lesser General Public License
    along with this program.  If not, see http://www.gnu.org/licenses.
 __NOTOC__
