@@ -4,6 +4,6 @@
 
 (verify-extension-name "define-structure")
 
-(setup-shared-extension-module 'define-structure (extension-version "1.0")
+(setup-shared-extension-module 'define-structure (extension-version "2.0")
   #:inline? #t #:types? #t
   #:compile-options '(-O3 -d2))

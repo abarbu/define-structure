@@ -10,8 +10,12 @@ see ''local-set-{name}-{field}!''.
 ==== Creation ====
 
 :(define-structure name . fields)
+:(define-public-structure name . fields)
+:(define-private-structure name . fields)
 
-Creates a new structure.
+Creates a new structure. By default all structures are public,
+generate an export form, making define-structure an alias for
+define-public-structure.
 
 ==== Use ====
 
