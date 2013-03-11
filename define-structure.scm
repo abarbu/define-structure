@@ -1,8 +1,18 @@
 (module define-structure 
- (define-structure define-private-structure define-public-structure)
-(import chicken scheme)
+ (define-structure define-private-structure define-public-structure
+                   pp-record-without-newline pp-without-newline)
+(import chicken scheme extras ports lolevel)
 (require-extension nondeterminism)
 (begin-for-syntax (require-extension srfi-1 nondeterminism))
+
+;; disgusting and slow, will have to do for now as I don't know how to
+;; stop chicken's pp from printing a newline all the time
+(define (pp-without-newline obj port)
+ (let ((s (call-with-output-string (lambda (port) (pp obj port)))))
+  (display (substring s 0 (- (string-length s) 1)) port)))
+(define (pp-record-without-newline obj port)
+ (display "#," port)
+ (pp-without-newline (vector->list (record->vector obj)) port))
 
 (define-syntax define-structure-with-visibility
  (er-macro-transformer
@@ -47,7 +57,7 @@
           (%cdr (rename 'cdr))
           (%proc (rename 'proc))
           (%upon-failure (rename 'upon-failure))
-          (%fprintf (rename 'fprintf))
+          (%pp-record-without-newline (rename 'pp-record-without-newline))
           (%export (rename 'export)))
     (receive (init-fields no-init-fields)
              (partition pair? fields)
@@ -225,15 +235,7 @@
                (,%define-reader-ctor ',type-name ,make)
                (,%define-record-printer
                 (,type-name ,%obj ,%val)
-                (,%fprintf ,%val 
-                           ,(conc "#,("
-                                  type-name
-                                  (apply conc (map (lambda (f) " ~S") field-names))
-                                  ")")
-                           ,@(map
-                              (lambda (f)
-                               `(,(string->symbol (conc type-name "-" f)) ,%obj))
-                              field-names)))))))))
+                (,%pp-record-without-newline ,%obj ,%val))))))))
 
 (define-syntax define-private-structure
  (syntax-rules ()
