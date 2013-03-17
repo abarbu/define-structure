@@ -6,7 +6,7 @@
  (license "LGPL")
  (synopsis "QobiScheme-compatible define-structure")
  (depends setup-helper miscmacros check-errors 
-          condition-utils nondeterminism)
+          condition-utils nondeterminism lolevel)
  (files "define-structure.meta"
         "define-structure.setup"
         "define-structure.scm"

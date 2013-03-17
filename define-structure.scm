@@ -1,8 +1,8 @@
 (module define-structure 
  (define-structure define-private-structure define-public-structure
                    pp-record-without-newline pp-without-newline)
-(import chicken scheme extras ports lolevel)
-(require-extension nondeterminism)
+(import chicken scheme extras ports)
+(use nondeterminism lolevel)
 (begin-for-syntax (require-extension srfi-1 nondeterminism))
 
 ;; disgusting and slow, will have to do for now as I don't know how to
